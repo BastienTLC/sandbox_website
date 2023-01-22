@@ -14,6 +14,7 @@ import { ListVilleComponent } from './list-ville/list-ville.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from "@angular/material/card";
 import { CardComponent } from './list-ville/card/card.component';
+import { PopChartComponent } from './list-ville/card/pop-chart/pop-chart.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CardComponent } from './list-ville/card/card.component';
     NavbarComponent,
     ListVilleComponent,
     CardComponent,
+    PopChartComponent,
   ],
   imports: [
     BrowserModule,
