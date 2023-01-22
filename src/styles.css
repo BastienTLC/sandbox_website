@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+
+* {
+    font-family: 'Ubuntu', Arial, sans-serif;
+    color: #616161;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

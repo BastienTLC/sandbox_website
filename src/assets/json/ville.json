@@ -1,0 +1,82 @@
+[
+  {
+    "rank": 1,
+    "ville": "Rennes",
+    "description": "Rennes est la préfecture et la plus grande ville de la région Bretagne. Elle est réputée pour son patrimoine historique, ses universités et ses nombreux festivals culturels.",
+    "population": 216092,
+    "superficie": 47.18,
+    "code_postal": "35000-35199",
+    "departement": "Ille-et-Vilaine",
+    "region": "Bretagne",
+    "population_evolution": [
+      {"annee": 1990,"population": 171000 },
+      {"annee": 2000,"population": 190000 },
+      {"annee": 2010,"population": 205000 },
+      {"annee": 2020,"population": 216092 }
+    ]
+  },
+  {
+    "rank": 2,
+    "ville": "Brest",
+    "description": "Brest est une ville portuaire située dans le Finistère en Bretagne. Elle est réputée pour son patrimoine naval, ses jardins et ses nombreux musées.",
+    "population": 143966,
+    "superficie": 34.51,
+    "code_postal": "29200-29999",
+    "departement": "Finistère",
+    "region": "Bretagne",
+    "population_evolution": [
+      {"annee": 1990,"population": 122000 },
+      {"annee": 2000,"population": 136000 },
+      {"annee": 2010,"population": 141000 },
+      {"annee": 2020,"population": 143966 }
+    ]
+  },
+  {
+    "rank": 3,
+    "ville": "Quimper",
+    "description": "Quimper est une ville située dans le Finistère en Bretagne. Elle est réputée pour son patrimoine historique, ses céramiques et ses nombreux festivals culturels.",
+    "population": 69077,
+    "superficie": 36.48,
+    "code_postal": "29000-29199",
+    "departement": "Finistère",
+    "region": "Bretagne",
+    "population_evolution": [
+      {"annee": 1990,"population": 60000 },
+      {"annee": 2000,"population": 65000 },
+      {"annee": 2010,"population": 68000 },
+      {"annee": 2020,"population": 69077 }
+    ]
+  },
+  {
+    "rank": 4,
+    "ville": "Saint-Malo",
+    "description": "Saint-Malo est une ville située dans l'Ille-et-Vilaine en Bretagne. Elle est réputée pour ses remparts, ses plages et son patrimoine historique.",
+    "population": 54632,
+    "superficie": 11.96,
+    "code_postal": "35400-35499",
+    "departement": "Illeet-Vilaine",
+    "region": "Bretagne",
+    "population_evolution": [
+      {"annee": 1990,"population": 50000 },
+      {"annee": 2000,"population": 51000 },
+      {"annee": 2010,"population": 53000 },
+      {"annee": 2020,"population": 54632 }
+    ]
+  },
+  {
+    "rank": 5,
+    "ville": "Vannes",
+    "description": "Vannes est une ville située dans le Morbihan en Bretagne. Elle est réputée pour son patrimoine historique, ses jardins et ses nombreux festivals culturels.",
+    "population": 54500,
+    "superficie": 34.97,
+    "code_postal": "56000-56199",
+    "departement": "Morbihan",
+    "region": "Bretagne",
+    "population_evolution": [
+      {"annee": 1990,"population": 50000 },
+      {"annee": 2000,"population": 51000 },
+      {"annee": 2010,"population": 53000 },
+      {"annee": 2020,"population": 54500 }
+    ]
+  }
+]
