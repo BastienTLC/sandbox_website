@@ -20,54 +20,32 @@ export class LineChartComponent {
 
     ngOnChanges(){
 
+        let maxPop = this.listville[0].population;
+
         this.listville.forEach((element: VilleModel, index: number) =>{
+            let ratioColor = (255*element.population/maxPop);
+            console.log(`${element.ville} ${ratioColor}`)
             console.log(element, index);
-            //this.lineChartData.datasets.push();
-            this.lineChartData.datasets[index].label = element.ville;
-            this.lineChartData.datasets[index].data = element.population_evolution.map(evolution => evolution.population);
+            this.lineChartData.datasets.push({
+                data: element.population_evolution.map(evolution => evolution.population),
+                label: element.ville,
+                backgroundColor: `rgba(${ratioColor},159,177,0.2)`,
+                borderColor: `rgba(${ratioColor},159,177,1)`,
+                pointBackgroundColor: `rgba(${ratioColor},159,177,1)`,
+                pointBorderColor: 'black',
+                pointHoverBackgroundColor: 'black',
+                pointHoverBorderColor: 'black',
+                fill: 'origin',
+            })
             this.lineChartData.labels = element.population_evolution.map(evolution => evolution.annee);
+            this.chart?.update();
         });
 
     }
 
     public lineChartData: ChartConfiguration['data'] = {
-        datasets: [
-            {
-                data: [ 65, 59, 80, 81, 56, 55, 40 ],
-                label: 'Series A',
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-                fill: 'origin',
-            },
-            {
-                data: [ 28, 48, 40, 19, 86, 27, 90 ],
-                label: 'Series B',
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)',
-                fill: 'origin',
-            },
-            {
-                data: [ 180, 480, 770, 90, 1000, 270, 400 ],
-                label: 'Series C',
-                yAxisID: 'y1',
-                backgroundColor: 'rgba(255,0,0,0.3)',
-                borderColor: 'red',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-                fill: 'origin',
-            }
-        ],
-        labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+        datasets: [],
+        labels: []
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
@@ -81,16 +59,13 @@ export class LineChartComponent {
             y:
                 {
                     position: 'left',
+                    grid: {
+                        color: 'rgba(255,0,0,0.3)',
+                    },
+                    ticks: {
+                        color: 'black'
+                    }
                 },
-            y1: {
-                position: 'right',
-                grid: {
-                    color: 'rgba(255,0,0,0.3)',
-                },
-                ticks: {
-                    color: 'red'
-                }
-            }
         },
 
         plugins: {

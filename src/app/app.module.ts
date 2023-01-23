@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -17,6 +18,8 @@ import { CardComponent } from './list-ville/card/card.component';
 import { NgChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './list-ville/card/bar-chart/bar-chart.component';
 import { LineChartComponent } from './list-ville/line-chart/line-chart.component';
+import {AppRoutingModule} from "./app-routing.module";
+
 
 
 @NgModule({
@@ -30,6 +33,7 @@ import { LineChartComponent } from './list-ville/line-chart/line-chart.component
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -39,7 +43,8 @@ import { LineChartComponent } from './list-ville/line-chart/line-chart.component
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    NgChartsModule
+    NgChartsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

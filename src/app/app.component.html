@@ -1,1 +1,11 @@
-<app-list-ville></app-list-ville>
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+<!--<nav>
+    <ul>
+        <li><a routerLink="/first-component" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
+        <li><a routerLink="/second-component" routerLinkActive="active" ariaCurrentWhenActive="page">Second Component</a></li>
+    </ul>
+    <button [routerLink]="['/first-component']">Afficher Composant 1</button>
+</nav>-->
+<!-- The routed views render in the <router-outlet>-->

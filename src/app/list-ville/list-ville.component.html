@@ -1,16 +1,21 @@
 
-<div class="list-container" >
-    <div *ngFor="let ville of jsonVilleResult">
-        <app-card
-                [ville]="ville"
-                [listville]="jsonVilleResult">
-            ></app-card>
+<main>
+    <div class="card-list">
+        <div *ngFor="let ville of jsonVilleResult" >
+            <app-card
+                    [ville]="ville"
+                    [listville]="jsonVilleResult">
+                ></app-card>
+        </div>
     </div>
-</div>
 
-<app-line-chart
-        [listville]="jsonVilleResult"
-></app-line-chart>
+    <app-line-chart
+            [listville]="jsonVilleResult"
+    ></app-line-chart>
+</main>
+
+
+
 
 
 

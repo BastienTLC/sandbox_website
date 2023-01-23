@@ -2,7 +2,6 @@
     max-width: 400px;
     height: 520px;
     background-color: seashell;
-    margin-bottom: 30px;
 }
 .card-button {
     display: flex;
@@ -12,6 +11,8 @@
 .tp-wrapper {
     -webkit-perspective: 800px;
     perspective: 800px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .tp-box {
