@@ -14,7 +14,10 @@ import { ListVilleComponent } from './list-ville/list-ville.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from "@angular/material/card";
 import { CardComponent } from './list-ville/card/card.component';
-import { PopChartComponent } from './list-ville/card/pop-chart/pop-chart.component';
+import { NgChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './list-ville/card/bar-chart/bar-chart.component';
+import { LineChartComponent } from './list-ville/line-chart/line-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { PopChartComponent } from './list-ville/card/pop-chart/pop-chart.compone
     NavbarComponent,
     ListVilleComponent,
     CardComponent,
-    PopChartComponent,
+    BarChartComponent,
+    LineChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { PopChartComponent } from './list-ville/card/pop-chart/pop-chart.compone
     MatListModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

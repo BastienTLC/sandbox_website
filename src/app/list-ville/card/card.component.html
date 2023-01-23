@@ -1,0 +1,64 @@
+<div class="tp-wrapper">
+    <div class="tp-box" [@flipState]="flip">
+        <mat-card *ngIf="flip" class="example-card tp-box__side tp-box__front">
+            <mat-card-header>
+                <mat-card-title *ngIf="ville">{{ville.rank + " " + ville.ville}}</mat-card-title>
+                <mat-card-subtitle *ngIf="ville">{{ville.population.toLocaleString()}} Habitants</mat-card-subtitle>
+            </mat-card-header>
+            <img *ngIf="images && images[0] && images[0]['previewURL']" mat-card-image [src]="images[0]['previewURL']" alt="Photo of a Shiba Inu" height="280" width="400">
+            <mat-card-content>
+                <p *ngIf="ville">
+                    {{ville.description}}
+                </p>
+                <p *ngIf="!ville"></p>
+            </mat-card-content>
+            <mat-card-actions class="card-button">
+                <div class="example-button-container">
+                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </div>
+                <div class="example-button-container">
+                    <button mat-fab color="primary" aria-label="Example icon button with a heart icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+                <div class="example-button-container">
+                    <button (click)="toggleFlip()" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card *ngIf="flip" class="example-card tp-box__side tp-box__back">
+            <mat-card-header>
+                <mat-card-title *ngIf="ville">{{ville.rank + " " + ville.ville}}</mat-card-title>
+                <mat-card-subtitle *ngIf="ville">{{ville.population.toLocaleString()}} Habitants</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <app-bar-chart
+                        [ville]="ville"
+                ></app-bar-chart>
+            </mat-card-content>
+            <mat-card-actions class="card-button">
+                <div class="example-button-container">
+                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </div>
+                <div class="example-button-container">
+                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </div>
+                <div class="example-button-container">
+                    <button (click)="toggleFlip()" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                        <mat-icon [@flipState]="flip">chevron_right</mat-icon>
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
