@@ -1,7 +1,7 @@
 .example-card {
     max-width: 400px;
     height: 520px;
-    background-color: seashell;
+    background-color: greenyellow;
 }
 .card-button {
     display: flex;
