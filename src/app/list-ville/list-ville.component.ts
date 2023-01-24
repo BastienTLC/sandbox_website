@@ -7,14 +7,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './list-ville.component.html',
   styleUrls: ['./list-ville.component.css'],
 })
-export class ListVilleComponent{
+export class ListVilleComponent implements OnInit{
   jsonVilleResult: any;
 
-  constructor(private http: HttpClient, private VilleService: VillleService) {
-    this.http.get('assets/json/ville.json').subscribe((res) => {
+  constructor(private VilleService: VillleService) { }
+
+  ngOnInit() {
+    this.VilleService.getVilleResult().subscribe(res => {
       this.jsonVilleResult = res;
-      console.log('--- result :: ',  this.jsonVilleResult);
-      console.log('___ result :: ',  this.VilleService.getVilleResult());
     });
   }
 }
