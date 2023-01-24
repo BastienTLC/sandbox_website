@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { VilleModel } from '../ville.model';
 import { PhotoSearchService } from './photoSearch.service'
 import {animate, state, style, transition, trigger} from "@angular/animations";
@@ -21,7 +21,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     ])
   ]
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
   @Input() ville: VilleModel | undefined;
   @Input() listville: VilleModel[] | undefined;
   @Output() notify = new EventEmitter();

@@ -20,26 +20,30 @@ export class LineChartComponent {
 
     ngOnChanges(){
 
-        let maxPop = this.listville[0].population;
+        if (this.listville){
+            let maxPop = this.listville[0].population;
 
-        this.listville.forEach((element: VilleModel, index: number) =>{
-            let ratioColor = (255*element.population/maxPop);
-            console.log(`${element.ville} ${ratioColor}`)
-            console.log(element, index);
-            this.lineChartData.datasets.push({
-                data: element.population_evolution.map(evolution => evolution.population),
-                label: element.ville,
-                backgroundColor: `rgba(${ratioColor},159,177,0.2)`,
-                borderColor: `rgba(${ratioColor},159,177,1)`,
-                pointBackgroundColor: `rgba(${ratioColor},159,177,1)`,
-                pointBorderColor: 'black',
-                pointHoverBackgroundColor: 'black',
-                pointHoverBorderColor: 'black',
-                fill: 'origin',
-            })
-            this.lineChartData.labels = element.population_evolution.map(evolution => evolution.annee);
-            this.chart?.update();
-        });
+            this.listville.forEach((element: VilleModel, index: number) =>{
+                let ratioColor = (255*element.population/maxPop);
+                console.log(`${element.ville} ${ratioColor}`)
+                console.log(element, index);
+                this.lineChartData.datasets.push({
+                    data: element.population_evolution.map(evolution => evolution.population),
+                    label: element.ville,
+                    backgroundColor: `rgba(${ratioColor},159,177,0.2)`,
+                    borderColor: `rgba(${ratioColor},159,177,1)`,
+                    pointBackgroundColor: `rgba(${ratioColor},159,177,1)`,
+                    pointBorderColor: 'black',
+                    pointHoverBackgroundColor: 'black',
+                    pointHoverBorderColor: 'black',
+                    fill: 'origin',
+                })
+                this.lineChartData.labels = element.population_evolution.map(evolution => evolution.annee);
+                this.chart?.update();
+            });
+        }
+
+
 
     }
 
