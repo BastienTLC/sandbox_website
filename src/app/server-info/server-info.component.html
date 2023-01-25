@@ -17,6 +17,10 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div>Card Content Here</div>
+          <div *ngIf="card.title == 'Card 1'">
+            <mat-progress-spinner mode="determinate" [value]="value"></mat-progress-spinner>
+          </div>
+
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

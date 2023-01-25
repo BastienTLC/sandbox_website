@@ -22,6 +22,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ServerInfoComponent } from './server-info/server-info.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -35,23 +37,25 @@ import { MatMenuModule } from '@angular/material/menu';
     LineChartComponent,
     ServerInfoComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatCardModule,
-    NgChartsModule,
-    MatGridListModule,
-    MatMenuModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatCardModule,
+        NgChartsModule,
+        MatGridListModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
