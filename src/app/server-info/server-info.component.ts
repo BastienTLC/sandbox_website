@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {ServerDataService} from "./server-data.service";
 import _default from "chart.js/dist/plugins/plugin.tooltip";
 import numbers = _default.defaults.animations.numbers;
-import {ServerDataModel} from "./ServerData.model";
+import {ServerDataMemoryModel} from "./DataModel/ServerDataMemory.model";
 
 @Component({
   selector: 'app-server-info',
@@ -15,15 +15,6 @@ export class ServerInfoComponent implements OnInit{
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
-
       return [
         { title: 'Card 1', cols: 2, rows: 1 },
         { title: 'Card 2', cols: 1, rows: 1 },
@@ -36,18 +27,22 @@ export class ServerInfoComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver, private serveurData: ServerDataService) {}
 
   memoryInterval:any;
-  value: number | undefined;
+  usedvalue: number | undefined;
+  freevalue: number | undefined;
   ngOnInit() {
     this.memoryInterval = setInterval(()=> {
       this.serveurData.getMemory().subscribe(data => {
         console.log(data);
-        this.value = (data.usedMemory/data.totalMemory) * 100;
+        this.usedvalue = Math.round(data.usedMemory);
+        this.freevalue = Math.round(data.freeMemory);
+        //this.usedvalue = (data.usedMemory/data.totalMemory) * 100;
       });
+
+
       this.serveurData.getCpus().subscribe(data => {
-        console.log(data);
+        console.log(data.cpuInfo.cpus.map(cpu => cpu.load));
       });
     },1000);
-
   }
 
   ngOnDestroy() {

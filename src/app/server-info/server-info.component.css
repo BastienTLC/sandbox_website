@@ -19,3 +19,13 @@
 .dashboard-card-content {
   text-align: center;
 }
+
+mat-card-header{
+  display: flex;
+  justify-content: center;
+}
+
+.ram-statistique{
+  display: flex;
+  flex-direction: row;
+}

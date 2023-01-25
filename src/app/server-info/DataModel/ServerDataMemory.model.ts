@@ -1,4 +1,4 @@
-export class ServerDataModel {
+export class ServerDataMemoryModel {
     usedMemory: number;
     totalMemory: number;
     freeMemory: number;

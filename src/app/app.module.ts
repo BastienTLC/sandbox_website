@@ -24,6 +24,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { DoughnutChartComponent } from './server-info/graphe/doughnut-chart/doughnut-chart.component';
+import { PieChartComponent } from './server-info/graphe/pie-chart/pie-chart.component';
 
 
 
@@ -36,6 +38,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     BarChartComponent,
     LineChartComponent,
     ServerInfoComponent,
+    DoughnutChartComponent,
+    PieChartComponent,
   ],
     imports: [
         BrowserModule,
