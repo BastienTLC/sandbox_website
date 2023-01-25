@@ -6,7 +6,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="showComponent = !showComponent; toggleFlip()" >Link 1</a>
-      <a mat-list-item (click)="toggleFlip()" href="#">Link 2</a>
+      <a mat-list-item (click)="showDashboardComponent = !showDashboardComponent; toggleFlip()" >Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -24,6 +24,9 @@
     <mat-drawer-container [@flipState]="flip">
       <div *ngIf="showComponent">
         <app-list-ville></app-list-ville>
+      </div>
+      <div *ngIf="showDashboardComponent">
+        <app-server-info></app-server-info>
       </div>
     </mat-drawer-container>
 

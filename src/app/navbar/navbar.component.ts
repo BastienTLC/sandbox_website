@@ -34,6 +34,7 @@ export class NavbarComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   showComponent: boolean = false;
+  showDashboardComponent: boolean = false;
 
   flip: string = 'inactive';
   toggleFlip() {

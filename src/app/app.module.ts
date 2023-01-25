@@ -19,6 +19,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './list-ville/card/bar-chart/bar-chart.component';
 import { LineChartComponent } from './list-ville/line-chart/line-chart.component';
 import { AppRoutingModule } from "./app-routing.module";
+import { ServerInfoComponent } from './server-info/server-info.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -30,6 +33,7 @@ import { AppRoutingModule } from "./app-routing.module";
     CardComponent,
     BarChartComponent,
     LineChartComponent,
+    ServerInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { AppRoutingModule } from "./app-routing.module";
     HttpClientModule,
     MatCardModule,
     NgChartsModule,
+    MatGridListModule,
+    MatMenuModule,
 
   ],
   providers: [],
