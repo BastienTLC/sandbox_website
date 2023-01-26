@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {ServerDataService} from "./server-data.service";
@@ -13,6 +13,22 @@ import {Cpu} from "../interfaces/RootObject";
   styleUrls: ['./server-info.component.css']
 })
 export class ServerInfoComponent implements OnInit{
+  @ViewChild('Card 1', { static: true }) card1: ElementRef | undefined;
+  @HostListener('window:resize', ['$event'])
+
+
+  onResize() {
+    console.log("resize");
+    if (this.card1){
+      console.log('Hauteur de Card 1 : ', this.card1.nativeElement.offsetHeight);
+      console.log('Largeur de Card 1 : ', this.card1.nativeElement.offsetWidth);
+    }
+  }
+
+
+
+
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -24,6 +40,7 @@ export class ServerInfoComponent implements OnInit{
       ];
     })
   );
+
 
   constructor(private breakpointObserver: BreakpointObserver, private serveurData: ServerDataService) {}
 

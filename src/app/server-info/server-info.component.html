@@ -1,15 +1,14 @@
-<app-cpu-line-chart
-        [cores]="cpuLoad"
-></app-cpu-line-chart>
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
+      <mat-card class="dashboard-card" id="{{card.title}}}">
         <mat-card-header>
           <div *ngIf="card.title == 'Card 1'">
             <div class="cpu-statistique">
-
+              <app-cpu-line-chart
+                      [cores]="cpuLoad"
+              ></app-cpu-line-chart>
             </div>
           </div>
           <div *ngIf="card.title == 'Card 2'">

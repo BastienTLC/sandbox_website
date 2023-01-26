@@ -1,3 +1,6 @@
+/*A FAIRE ROUJOUTER LE FAITE DE PRENDRE EN COMPTE L'ADAPTION DU NOMBRE DE COEUR DU CPU FONCTIONNE SEULEMENT POUR 4 COEUR*/
+
+
 import {Component, ViewChild, Input, SimpleChanges} from '@angular/core';
 import {Chart, ChartConfiguration, ChartEvent, ChartType, elements} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -33,26 +36,21 @@ export class CpuLineChartComponent{
           this.coresMeasureOneMinute.push(this.cores)
         }
       }
-      //console.log(this.coresMeasureOneMinute);
 
       let coreLoads: number[][] = [];
       for (let core = 0; core < this.cores.length; core++) {
         coreLoads[core] = [];
         for (let cpu = 0; cpu < this.coresMeasureOneMinute.length; cpu++) {
-          coreLoads[core].push(this.coresMeasureOneMinute[cpu][core].load);
+          coreLoads[core].push(Math.round(this.coresMeasureOneMinute[cpu][core].load));
         }
       }
-      console.log(coreLoads);
+      //console.log(coreLoads);
       this.cores.forEach((core: Cpu, indexCore) => {
         this.lineChartData.datasets[indexCore] = {
           data: coreLoads[indexCore],
           label: `CPU ${indexCore}`,
-          backgroundColor: `rgba(100, 159, 177, 0.2)`,
-          borderColor: `rgba(100, 159, 177, 1)`,
-          pointBackgroundColor: `rgba(100, 159, 177, 1)`,
-          pointBorderColor: 'black',
-          pointHoverBackgroundColor: 'black',
-          pointHoverBorderColor: 'black',
+          backgroundColor: `rgba(100, 159, 177, 0)`,
+          yAxisID: 'y',
           fill: 'origin',
         }
       })
@@ -66,56 +64,25 @@ export class CpuLineChartComponent{
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 65, 59, 80, 81, 56, 55, 40 ],
-        label: 'Series A',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        data: [],
       },
       {
-        data: [ 28, 48, 40, 19, 86, 27, 90 ],
-        label: 'Series B',
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,1)',
-        fill: 'origin',
+        data: [ ],
+
       },
       {
-        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
-        label: 'Series C',
-        yAxisID: 'y1',
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        data: [ ],
+
       },
       {
-        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
-        label: 'Series C',
-        yAxisID: 'y1',
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        data: [ ],
       }
     ],
     labels: [  ]
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
+    animation: false,
     elements: {
       line: {
         tension: 0.5
@@ -126,16 +93,16 @@ export class CpuLineChartComponent{
       y:
           {
             position: 'left',
-          },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
-        }
-      }
+            min:0,
+            max:100,
+            grid: {
+              color: 'rgba(255,0,0,0.3)',
+            },
+            ticks: {
+              color: 'black',
+            }
+
+          }
     },
 
     plugins: {
@@ -157,45 +124,6 @@ export class CpuLineChartComponent{
         this.lineChartData.datasets[i].data[j] = CpuLineChartComponent.generateNumber(i);
       }
     }
-    this.chart?.update();
-  }
-
-  // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public hideOne(): void {
-    const isHidden = this.chart?.isDatasetHidden(1);
-    this.chart?.hideDataset(1, !isHidden);
-  }
-
-  public pushOne(): void {
-    this.lineChartData.datasets.forEach((x, i) => {
-      const num = CpuLineChartComponent.generateNumber(i);
-      x.data.push(num);
-    });
-    this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
-
-    this.chart?.update();
-  }
-
-  public changeColor(): void {
-    this.lineChartData.datasets[2].borderColor = 'green';
-    this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-
-    this.chart?.update();
-  }
-
-  public changeLabel(): void {
-    const tmp = this.newLabel;
-    this.newLabel = this.lineChartData.datasets[2].label;
-    this.lineChartData.datasets[2].label = tmp;
-
     this.chart?.update();
   }
 }

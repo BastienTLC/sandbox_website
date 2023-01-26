@@ -9,6 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class PieChartComponent implements OnChanges  {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
   @Input() UsedValue: any ;
   @Input() FreeValue: any ;
 
