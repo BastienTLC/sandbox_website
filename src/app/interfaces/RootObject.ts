@@ -1,4 +1,4 @@
-interface CpuInfo {
+export interface CpuInfo {
     avgLoad: number;
     currentLoad: number;
     currentLoadUser: number;
@@ -14,7 +14,7 @@ interface CpuInfo {
     rawCurrentLoadIrq: number;
     cpus: Cpu[];
 }
-interface Cpu {
+export interface Cpu {
     load: number;
     loadUser: number;
     loadSystem: number;

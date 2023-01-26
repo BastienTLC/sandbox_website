@@ -19,8 +19,6 @@ export class PieChartComponent implements OnChanges  {
       this.pieChartData.datasets[0].data[1] = Math.round(this.FreeValue);
     }
 
-      console.log(this.FreeValue);
-      console.log(this.UsedValue);
       this.chart?.update();
   }
 

@@ -5,6 +5,7 @@ import {ServerDataService} from "./server-data.service";
 import _default from "chart.js/dist/plugins/plugin.tooltip";
 import numbers = _default.defaults.animations.numbers;
 import {ServerDataMemoryModel} from "./DataModel/ServerDataMemory.model";
+import {Cpu} from "../interfaces/RootObject";
 
 @Component({
   selector: 'app-server-info',
@@ -29,10 +30,12 @@ export class ServerInfoComponent implements OnInit{
   memoryInterval:any;
   usedvalue: number | undefined;
   freevalue: number | undefined;
+  cpuLoad: Cpu[] | undefined;
+
   ngOnInit() {
     this.memoryInterval = setInterval(()=> {
       this.serveurData.getMemory().subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.usedvalue = Math.round(data.usedMemory);
         this.freevalue = Math.round(data.freeMemory);
         //this.usedvalue = (data.usedMemory/data.totalMemory) * 100;
@@ -40,7 +43,8 @@ export class ServerInfoComponent implements OnInit{
 
 
       this.serveurData.getCpus().subscribe(data => {
-        console.log(data.cpuInfo.cpus.map(cpu => cpu.load));
+        //console.log(data.cpuInfo.cpus);
+        this.cpuLoad = data.cpuInfo.cpus;
       });
     },1000);
   }
