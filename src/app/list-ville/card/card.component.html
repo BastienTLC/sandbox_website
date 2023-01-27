@@ -14,17 +14,7 @@
             </mat-card-content>
             <mat-card-actions class="card-button">
                 <div class="example-button-container">
-                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
-                        <mat-icon>home</mat-icon>
-                    </button>
-                </div>
-                <div class="example-button-container">
-                    <button mat-fab color="primary" aria-label="Example icon button with a heart icon">
-                        <mat-icon>favorite</mat-icon>
-                    </button>
-                </div>
-                <div class="example-button-container">
-                    <button (click)="toggleFlip()" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                    <button (click)="toggleFlip()" mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
                         <mat-icon>chevron_right</mat-icon>
                     </button>
                 </div>
@@ -41,19 +31,9 @@
                         [ville]="ville"
                 ></app-bar-chart>
             </mat-card-content>
-            <mat-card-actions class="card-button">
+            <mat-card-actions class="card-button" style="justify-content: flex-start">
                 <div class="example-button-container">
-                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
-                        <mat-icon>home</mat-icon>
-                    </button>
-                </div>
-                <div class="example-button-container">
-                    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
-                        <mat-icon>home</mat-icon>
-                    </button>
-                </div>
-                <div class="example-button-container">
-                    <button (click)="toggleFlip()" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                    <button (click)="toggleFlip()" mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
                         <mat-icon [@flipState]="flip">chevron_right</mat-icon>
                     </button>
                 </div>

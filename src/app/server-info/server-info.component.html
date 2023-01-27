@@ -17,18 +17,36 @@
                       [UsedValue]="usedvalue"
                       [FreeValue]="freevalue"
               ></app-pie-chart>
-              <div>
-                <p>Espace libre : {{freevalue}} mo</p>
-                <p>Espace utilisé : {{usedvalue}} mo</p>
+              <div class="writeStatistique">
+                <li>
+                  Libre : {{freevalue}} mo
+                </li>
+                <li>
+                  Utilisé {{usedvalue}} mo
+                </li>
               </div>
-              <!--<app-doughnut-chart
-                [UsedValue]="usedvalue"
-                [FreeValue]="freevalue"
-              ></app-doughnut-chart>-->
             </div>
           </div>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
+          <div *ngIf="card.title == 'Card 3'">
+            <div class="terminal-output">
+              <div class="body" *ngIf="SystemInfo">
+                <div class="row">
+                  <div class="label">Manufacturer:</div>
+                  <div class="value">{{SystemInfo.system.manufacturer}}</div>
+                </div>
+                <div class="row">
+                  <div class="label">Model:</div>
+                  <div class="value">{{SystemInfo.system.model}}</div>
+                </div>
+                <div class="row">
+                  <div class="label">Kernel:</div>
+                  <div class="value">5.15.76-v7l+</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

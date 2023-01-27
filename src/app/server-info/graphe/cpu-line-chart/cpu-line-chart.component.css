@@ -1,3 +1,46 @@
 canvas{
-    background-color: transparent;
+    background-color: white;
+    width: 2800px;
+    height: 300px;
+    max-height: 300px;
+    min-height: 300px;
 }
+
+/* Pour les écrans de téléphone portable */
+@media (max-width: 767px) {
+    canvas{
+        width: 300px;
+    }
+}
+
+/* Pour les tablettes */
+@media (min-width: 768px) and (max-width: 991px) {
+    canvas{
+        width: 500px;
+    }
+}
+
+/* Pour les ordinateurs portables et les ordinateurs de bureau */
+@media (min-width: 992px) and (max-width: 1499px) {
+    canvas{
+        width: 800px;
+    }
+}
+
+/* Pour les écrans larges */
+@media (min-width: 1500px) {
+    canvas{
+        width: 1200px;
+    }
+}
+
+/* Pour les écrans 21:9*/
+@media (min-aspect-ratio: 21/9) {
+    canvas{
+        width: 2800px;
+    }
+}
+
+
+
+

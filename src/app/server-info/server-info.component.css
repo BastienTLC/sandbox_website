@@ -28,4 +28,54 @@ mat-card-header{
 .ram-statistique{
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.writeStatistique{
+  background-color: transparent;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+
+.terminal-output {
+  font-family: 'Inconsolata', monospace;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 10px;
+  background-color: #fff;
+}
+
+.body {
+  line-height: 1.5;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.label {
+  font-weight: bold;
+  width: 75px;
+}
+
+.value {
+  flex: 1;
 }

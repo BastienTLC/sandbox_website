@@ -18,7 +18,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         opacity:0,
       })),
       transition('inactive => active', [
-        animate('0.4s')
+        animate('0.6s')
       ]),
     ])
   ]
@@ -39,7 +39,6 @@ export class NavbarComponent {
   flip: string = 'inactive';
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
-    console.log(this.flip);
   }
 
 }

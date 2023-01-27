@@ -8,6 +8,11 @@
 
 .sidenav .mat-toolbar {
   background: inherit;
+  background-color: seashell;
+}
+
+.mat-toolbar{
+  background-color: seashell;
 }
 
 .mat-toolbar.mat-primary {
