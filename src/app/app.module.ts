@@ -27,6 +27,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { DoughnutChartComponent } from './server-info/graphe/doughnut-chart/doughnut-chart.component';
 import { PieChartComponent } from './server-info/graphe/pie-chart/pie-chart.component';
 import { CpuLineChartComponent } from './server-info/graphe/cpu-line-chart/cpu-line-chart.component';
+import { CubeComponent } from './cube/cube.component';
 
 
 
@@ -42,6 +43,7 @@ import { CpuLineChartComponent } from './server-info/graphe/cpu-line-chart/cpu-l
     DoughnutChartComponent,
     PieChartComponent,
     CpuLineChartComponent,
+    CubeComponent,
   ],
     imports: [
         BrowserModule,

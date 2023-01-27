@@ -25,8 +25,8 @@ export class LineChartComponent {
 
             this.listville.forEach((element: VilleModel, index: number) =>{
                 let ratioColor = (255*element.population/maxPop);
-                console.log(`${element.ville} ${ratioColor}`)
-                console.log(element, index);
+/*                console.log(`${element.ville} ${ratioColor}`)
+                console.log(element, index);*/
                 this.lineChartData.datasets.push({
                     data: element.population_evolution.map(evolution => evolution.population),
                     label: element.ville,

@@ -25,6 +25,13 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class NavbarComponent {
 
+  public myValue:string = "value1";
+
+  public changeValue(value:string){
+    this.myValue = value;
+    console.log(this.myValue);
+  }
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -33,8 +40,6 @@ export class NavbarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  showComponent: boolean = false;
-  showDashboardComponent: boolean = false;
 
   flip: string = 'inactive';
   toggleFlip() {

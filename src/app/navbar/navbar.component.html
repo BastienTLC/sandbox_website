@@ -6,9 +6,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item (click)="showComponent = !showComponent; toggleFlip()" >Link 1</a>
-      <a mat-list-item (click)="showDashboardComponent = !showDashboardComponent; toggleFlip()" >Link 2</a>
-      <a mat-list-item href=""  routerLink="/first-component" routerLinkActive="active">Link 3</a>
+      <a mat-list-item (click)="changeValue('value1'); toggleFlip()"><mat-icon>location_city</mat-icon> Ville Bretagne</a>
+      <a mat-list-item (click)="changeValue('value2'); toggleFlip()"><mat-icon>network_check</mat-icon> Serveur</a>
+      <a mat-list-item (click)="changeValue('value3'); toggleFlip()"><mat-icon> 3d_rotation </mat-icon> ThreeJs</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -23,11 +23,11 @@
       <span>sandbox_website</span>
     </mat-toolbar>
     <mat-drawer-container [@flipState]="flip">
-      <div *ngIf="showComponent">
-        <app-list-ville></app-list-ville>
-      </div>
-      <div *ngIf="showDashboardComponent">
-        <app-server-info></app-server-info>
+      <div [ngSwitch]="myValue">
+        <div *ngSwitchCase="'value1'"><app-list-ville></app-list-ville></div>
+        <div *ngSwitchCase="'value2'"><app-server-info></app-server-info></div>
+        <div *ngSwitchCase="'value3'"><app-cube></app-cube></div>
+        <div *ngSwitchDefault><app-list-ville></app-list-ville></div>
       </div>
     </mat-drawer-container>
 

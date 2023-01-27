@@ -31,14 +31,12 @@ export class CardComponent implements OnInit{
     if (this.ville)
       this.photoSearch.search("city "+this.ville?.ville).subscribe(data => {
         this.images = data.hits;
-        console.log(this.images[0]["previewURL"]);
       });
   }
 
   flip: string = 'inactive';
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
-    console.log(this.flip);
   }
 
 }
