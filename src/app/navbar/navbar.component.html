@@ -1,5 +1,4 @@
 <mat-sidenav-container class="sidenav-container">
-  <router-outlet></router-outlet>
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -27,7 +26,7 @@
         <div *ngSwitchCase="'value1'"><app-list-ville></app-list-ville></div>
         <div *ngSwitchCase="'value2'"><app-server-info></app-server-info></div>
         <div *ngSwitchCase="'value3'"><app-cube></app-cube></div>
-        <div *ngSwitchDefault><app-list-ville></app-list-ville></div>
+        <div *ngSwitchDefault></div>
       </div>
     </mat-drawer-container>
 
