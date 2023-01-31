@@ -1,6 +1,9 @@
 <div class="grid-container">
   <h1 class="mat-h1"><mat-icon aria-hidden="true" aria-label="Example home icon" fontIcon="dashboard"></mat-icon>Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <div *ngIf="!cpuLoad" class="spinner-container">
+      <mat-spinner [diameter]="150"  color="warn"></mat-spinner>
+  </div>
+  <mat-grid-list *ngIf="cpuLoad" cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card" id="{{card.title}}}">
         <mat-card-header>

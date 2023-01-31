@@ -17,7 +17,7 @@ export class CubeComponent implements OnInit, AfterViewInit{
   @ViewChild('canvas')
 
 
-  private canvasRef: ElementRef;
+  private canvasRef!: ElementRef;
   @Input() public rotationSpeedX: number = 0.005;
   @Input() public rotationSpeedY: number = 0.005;
   @Input() public size: number = 200;
@@ -34,6 +34,7 @@ export class CubeComponent implements OnInit, AfterViewInit{
   private loader = new THREE.TextureLoader();
   private geometry = new THREE.BoxGeometry(1, 1, 1);
   private light = new THREE.DirectionalLight(0xffffff,1);
+  private ligntAmb = new THREE.DirectionalLight(0xffffff, 1)
   private import = new GLTFLoader();
   private obj:Object3D = new THREE.Object3D;
 
@@ -57,6 +58,7 @@ export class CubeComponent implements OnInit, AfterViewInit{
       console.error(error);
     });
 
+    this.scene.add(this.ligntAmb);
     this.scene.add(this.light);
 
 //*Camera
