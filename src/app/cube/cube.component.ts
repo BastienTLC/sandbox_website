@@ -1,11 +1,13 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, HostListener} from '@angular/core';
 import * as THREE from 'three';
-import {CanvasTexture, Object3D} from "three";
+import {CanvasTexture, Mesh, Object3D} from "three";
 import {FlakesTexture} from "three/examples/jsm/textures/FlakesTexture";
 import {GLTF, GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {animate} from "@angular/animations";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {Scene} from "./Scene";
+
 
 
 @Component({
@@ -23,45 +25,21 @@ export class CubeComponent implements OnInit, AfterViewInit{
   @Input() public size: number = 200;
   @Input() public texture: string = "../../assets/textures/texture.jpg";
 
-  @Input() public cameraZ: number = 200;
+  @Input() public cameraZ: number = 1000;
   @Input() public fieldOfView: number = 1;
   @Input('nearClipping') public nearClippingPlane:number = 1;
-  @Input('farClipping') public farClippingPlane: number = 1000;
+  @Input('farClipping') public farClippingPlane: number = 5000;
 
 
   private camera!: THREE.PerspectiveCamera;
   private get canvas(): HTMLCanvasElement { return this.canvasRef.nativeElement;}
-  private loader = new THREE.TextureLoader();
-  private geometry = new THREE.BoxGeometry(1, 1, 1);
-  private light = new THREE.DirectionalLight(0xffffff,1);
-  private ligntAmb = new THREE.DirectionalLight(0xffffff, 1)
-  private import = new GLTFLoader();
-  private obj:Object3D = new THREE.Object3D;
 
-
-  private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture)});
-  private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
   private renderer!: THREE.WebGLRenderer;
-  private scene!: THREE.Scene;
-  //private controls = new OrbitControls(this.camera, this.renderer.domElement);
+  private Scene: Scene = new Scene();
 
-  private createScene() {
-//* Scene
-    this.light.position.set(2,2,5);
-    this.scene = new THREE.Scene();
-    //this.scene.background = new THREE.Color(0x0000FF);
-    //this.scene.add(this.cube);
-    this.import.load('../../assets/3D/character_rogue.gltf', (gltf) =>{
-       this.obj = gltf.scene.children[0];
-      this.scene.add(this.obj);
-    }, undefined, function (error){
-      console.error(error);
-    });
 
-    this.scene.add(this.ligntAmb);
-    this.scene.add(this.light);
+  private createCamera() {
 
-//*Camera
     let aspectRatio = this.getAspectRatio();
     this.camera = new THREE. PerspectiveCamera(
         this.fieldOfView,
@@ -69,7 +47,8 @@ export class CubeComponent implements OnInit, AfterViewInit{
         this.nearClippingPlane,
         this.farClippingPlane
     )
-   this.camera.position.z = this.cameraZ;
+    this.camera.position.z = this.cameraZ;
+    this.camera.position.y = 2000;
   }
 
 
@@ -78,23 +57,26 @@ export class CubeComponent implements OnInit, AfterViewInit{
   }
 
   private  animateCube(){
-    this.obj.rotation.y += this.rotationSpeedY;
-    this.obj.rotation.x += this.rotationSpeedX;
+    /*this.obj.rotation.y += this.rotationSpeedY;
+    this.obj.rotation.x += this.rotationSpeedX;*/
   }
 
   private startRenderingLoop() {
 //* Renderer
 // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true });
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
     this.renderer.setPixelRatio (devicePixelRatio);
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: CubeComponent = this;
     const control = new OrbitControls(this.camera, this.renderer.domElement);
     control.update();
     (function render() {
       requestAnimationFrame(render);
-      //component.animateCube();
-      component.renderer.render(component.scene, component.camera);
+      component.Scene.animationCube();
+      component.renderer.render(component.Scene.getScene(), component.camera);
     }());
   }
 
@@ -103,13 +85,36 @@ export class CubeComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
 
-    this.createScene();
+    this.Scene.createScene();
+    //this.scene = this.sc.getScene();
+    this.createCamera();
     this.startRenderingLoop();
+
+    window.addEventListener('resize', event=>{
+
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize( this.canvas.width, this.canvas.height );
+    });
+
+
+
+    this.canvas.addEventListener( 'pointermove', event =>{
+
+      pointer.x = ( event.clientX / this.canvas.clientWidth ) * 2 - 1;
+      pointer.y = - ( event.clientY / this.canvas.clientHeight ) * 2 + 1;
+
+      raycaster.setFromCamera(pointer,this.camera);
+      const found = raycaster.intersectObjects(this.Scene.getScene().children);
+
+      if (found.length > 0 && found[0].object.userData['Case']){
+        (((found[0].object as THREE.Mesh).material) as THREE.Material).opacity = 1;
+      }
+
+    } );
   }
 
-  @HostListener("window:scroll", ["$event"])
-  onWindowScroll(event : WindowEventMap) {
-    console.log("scroll");
-  }
 }
