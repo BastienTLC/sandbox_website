@@ -1,10 +1,5 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, HostListener} from '@angular/core';
 import * as THREE from 'three';
-import {CanvasTexture, Mesh, Object3D} from "three";
-import {FlakesTexture} from "three/examples/jsm/textures/FlakesTexture";
-import {GLTF, GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {animate} from "@angular/animations";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {Scene} from "./Scene";
 
@@ -68,6 +63,9 @@ export class CubeComponent implements OnInit, AfterViewInit{
     this.renderer.setPixelRatio (devicePixelRatio);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    console.log(this.canvas.clientWidth);
+    console.log(this.canvas.width);
+    console.log(window.innerWidth);
 
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: CubeComponent = this;
@@ -95,6 +93,11 @@ export class CubeComponent implements OnInit, AfterViewInit{
 
     window.addEventListener('resize', event=>{
 
+      console.log(this.canvas.clientWidth);
+      console.log(this.canvas.width);
+      console.log(window.innerWidth);
+      console.log(this.canvas.offsetWidth);
+
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize( this.canvas.width, this.canvas.height );
@@ -102,7 +105,7 @@ export class CubeComponent implements OnInit, AfterViewInit{
 
 
 
-    this.canvas.addEventListener( 'pointermove', event =>{
+    this.canvas.addEventListener( 'mousemove', event =>{
 
       pointer.x = ( event.clientX / this.canvas.clientWidth ) * 2 - 1;
       pointer.y = - ( event.clientY / this.canvas.clientHeight ) * 2 + 1;
@@ -113,8 +116,15 @@ export class CubeComponent implements OnInit, AfterViewInit{
       if (found.length > 0 && found[0].object.userData['Case']){
         (((found[0].object as THREE.Mesh).material) as THREE.Material).opacity = 1;
       }
+      else {
+        this.Scene.getScene().children.forEach((value)=>{
+          if (value.userData['Case']){
+            (((value as THREE.Mesh).material) as THREE.Material).opacity = 0.10
+          }
+        })
+      }
+
 
     } );
   }
-
 }
