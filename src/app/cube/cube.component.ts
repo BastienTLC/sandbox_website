@@ -1,8 +1,8 @@
-import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, HostListener} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import Stats from 'three/examples/jsm/libs/stats.module'
 import {Scene} from "./Scene";
-
 
 
 @Component({
@@ -10,7 +10,7 @@ import {Scene} from "./Scene";
   templateUrl: './cube.component.html',
   styleUrls: ['./cube.component.css']
 })
-export class CubeComponent implements OnInit, AfterViewInit{
+export class CubeComponent implements OnInit, AfterViewInit, OnChanges{
   @ViewChild('canvas')
 
 
@@ -19,18 +19,21 @@ export class CubeComponent implements OnInit, AfterViewInit{
   @Input() public rotationSpeedY: number = 0.005;
   @Input() public size: number = 200;
   @Input() public texture: string = "../../assets/textures/texture.jpg";
+  @Input() public loading: boolean = false;
 
   @Input() public cameraZ: number = 1000;
   @Input() public fieldOfView: number = 1;
-  @Input('nearClipping') public nearClippingPlane:number = 1;
-  @Input('farClipping') public farClippingPlane: number = 5000;
+  @Input('nearClipping') public nearClippingPlane:number = 100;
+  @Input('farClipping') public farClippingPlane: number = 200000;
+
+  @Input() public floorSize: { x: number; y: number } = {x: 1, y: 1};
 
 
   private camera!: THREE.PerspectiveCamera;
   private get canvas(): HTMLCanvasElement { return this.canvasRef.nativeElement;}
 
   private renderer!: THREE.WebGLRenderer;
-  private Scene: Scene = new Scene();
+  private Scene: Scene = new Scene(this);
 
 
   private createCamera() {
@@ -42,8 +45,11 @@ export class CubeComponent implements OnInit, AfterViewInit{
         this.nearClippingPlane,
         this.farClippingPlane
     )
-    this.camera.position.z = this.cameraZ;
-    this.camera.position.y = 2000;
+    this.camera.position.z = 0;
+    this.camera.position.x = 0;
+    this.camera.position.y = 1000;
+    this.camera.rotation.x = 30;
+
   }
 
 
@@ -57,15 +63,11 @@ export class CubeComponent implements OnInit, AfterViewInit{
   }
 
   private startRenderingLoop() {
-//* Renderer
-// Use canvas element in template
+
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
     this.renderer.setPixelRatio (devicePixelRatio);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    console.log(this.canvas.clientWidth);
-    console.log(this.canvas.width);
-    console.log(window.innerWidth);
 
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: CubeComponent = this;
@@ -78,53 +80,84 @@ export class CubeComponent implements OnInit, AfterViewInit{
     }());
   }
 
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
+  listenerEvent(){
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
 
-    this.Scene.createScene();
-    //this.scene = this.sc.getScene();
-    this.createCamera();
-    this.startRenderingLoop();
-
     window.addEventListener('resize', event=>{
-
-      console.log(this.canvas.clientWidth);
-      console.log(this.canvas.width);
-      console.log(window.innerWidth);
-      console.log(this.canvas.offsetWidth);
 
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize( this.canvas.width, this.canvas.height );
     });
 
-
-
     this.canvas.addEventListener( 'mousemove', event =>{
-
       pointer.x = ( event.clientX / this.canvas.clientWidth ) * 2 - 1;
       pointer.y = - ( event.clientY / this.canvas.clientHeight ) * 2 + 1;
 
       raycaster.setFromCamera(pointer,this.camera);
       const found = raycaster.intersectObjects(this.Scene.getScene().children);
 
+
       if (found.length > 0 && found[0].object.userData['Case']){
         (((found[0].object as THREE.Mesh).material) as THREE.Material).opacity = 1;
       }
       else {
         this.Scene.getScene().children.forEach((value)=>{
-          if (value.userData['Case']){
-            (((value as THREE.Mesh).material) as THREE.Material).opacity = 0.10
+          const group = value.getObjectByName('hoverFloor') as THREE.Group;
+          if (group as THREE.Group){
+            group.children.forEach(itemInGroup => {
+              if (itemInGroup.userData['Case']){
+                (((itemInGroup as THREE.Mesh).material) as THREE.Material).opacity = 0.10
+              }
+            })
           }
         })
       }
+    });
 
+    this.canvas.addEventListener('click', event => {
+      pointer.x = ( event.clientX / this.canvas.clientWidth ) * 2 - 1;
+      pointer.y = - ( event.clientY / this.canvas.clientHeight ) * 2 + 1;
+      raycaster.setFromCamera(pointer,this.camera);
+      const found = raycaster.intersectObjects(this.Scene.getScene().children);
 
-    } );
+      if(found.length > 0 ){
+        (found[0].object as THREE.Mesh).userData['Select'] = true;
+        (found[0].object as THREE.Mesh).userData['Case'] = false;
+        (((found[0].object as THREE.Mesh).material) as THREE.Material).opacity = 1;
+      }
+    });
+
   }
+
+
+  ngOnInit() {
+  }
+
+  onValueChange(newValue: any) {
+    this.loading = true;
+    this.Scene.removeFloor();
+    this.Scene.loadGeometrie();
+    console.log(this.Scene.getScene());
+
+    //this.camera.position.z ++;
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log(this.cameraZ);
+  }
+
+  ngAfterViewInit() {
+    this.Scene.createScene();
+    this.createCamera();
+    this.startRenderingLoop();
+    this.listenerEvent();
+  }
+
+  onChanges(){
+    console.log("changes");
+  }
+
+
 }

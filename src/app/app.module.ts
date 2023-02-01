@@ -28,6 +28,8 @@ import { DoughnutChartComponent } from './server-info/graphe/doughnut-chart/doug
 import { PieChartComponent } from './server-info/graphe/pie-chart/pie-chart.component';
 import { CpuLineChartComponent } from './server-info/graphe/cpu-line-chart/cpu-line-chart.component';
 import { CubeComponent } from './cube/cube.component';
+import {MatSliderModule} from "@angular/material/slider";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -62,6 +64,8 @@ import { CubeComponent } from './cube/cube.component';
         MatMenuModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
+        MatSliderModule,
+        FormsModule,
 
     ],
   providers: [],
