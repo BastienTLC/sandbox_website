@@ -62,6 +62,7 @@ export class CubeComponent implements OnInit, AfterViewInit, OnChanges{
     this.obj.rotation.x += this.rotationSpeedX;*/
   }
 
+
   private startRenderingLoop() {
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
@@ -75,7 +76,7 @@ export class CubeComponent implements OnInit, AfterViewInit, OnChanges{
     control.update();
     (function render() {
       requestAnimationFrame(render);
-      component.Scene.animationCube();
+      //component.Scene.animationPerso();
       component.renderer.render(component.Scene.getScene(), component.camera);
     }());
   }
@@ -117,8 +118,6 @@ export class CubeComponent implements OnInit, AfterViewInit, OnChanges{
     });
 
     this.canvas.addEventListener('click', event => {
-      pointer.x = ( event.clientX / this.canvas.clientWidth ) * 2 - 1;
-      pointer.y = - ( event.clientY / this.canvas.clientHeight ) * 2 + 1;
       raycaster.setFromCamera(pointer,this.camera);
       const found = raycaster.intersectObjects(this.Scene.getScene().children);
 
@@ -126,6 +125,8 @@ export class CubeComponent implements OnInit, AfterViewInit, OnChanges{
         (found[0].object as THREE.Mesh).userData['Select'] = true;
         (found[0].object as THREE.Mesh).userData['Case'] = false;
         (((found[0].object as THREE.Mesh).material) as THREE.Material).opacity = 1;
+        if (!this.Scene.isInMouvement)
+          this.Scene.deplacement((found[0].object as THREE.Mesh).position);
       }
     });
 

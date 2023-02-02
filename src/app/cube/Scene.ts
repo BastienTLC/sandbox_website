@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {Mesh, Object3D} from "three";
+import {Mesh, Object3D, Vector3} from "three";
 import { CubeComponent } from './cube.component';
+
 
 
 
@@ -22,6 +23,8 @@ export class Scene{
 
     private raycaster = new THREE.Raycaster();
     private pointer = new THREE.Vector2();
+
+    public isInMouvement:Boolean = false;
 
 
     constructor(private cube: CubeComponent) {}
@@ -136,8 +139,61 @@ export class Scene{
 
     //ANIMATION
 
-    public animationCube(){
-        //this.obj.rotation.y += 0.2;
+    public animationPerso(){
+
+    }
+
+    public deplacement(coordonne: Vector3){
+        let componant: Scene = this;
+        let DistanceX:number = Math.round((coordonne.x - this.obj.position.x)*100)/100;
+        let DistanceZ:number = Math.round((coordonne.z - this.obj.position.z)*100)/100;
+        let AvancerX:Boolean = DistanceX > 0;
+        let AvancerZ:Boolean = DistanceZ > 0;
+        this.isInMouvement = true;
+
+        (function render() {
+            if (DistanceX != 0 || DistanceZ != 0){
+                requestAnimationFrame(render);
+                DistanceX = Math.round((coordonne.x - componant.obj.position.x)*100)/100;
+                DistanceZ = Math.round((coordonne.z - componant.obj.position.z)*100)/100;
+                AvancerX = DistanceX > 0;
+                AvancerZ = DistanceZ > 0;
+            }
+            else{
+                componant.isInMouvement = false;
+            }
+
+            if (AvancerX && AvancerZ){
+                componant.obj.position.x += 0.01;
+                componant.obj.position.z += 0.01;
+                componant.obj.lookAt(1000,0,1000);
+            }else if (AvancerX && DistanceZ == 0){
+                componant.obj.position.x += 0.01;
+                componant.obj.lookAt(1000,0,0);
+            }else if (AvancerX && !AvancerZ){
+                componant.obj.position.x += 0.01;
+                componant.obj.position.z -= 0.01;
+                componant.obj.lookAt(1000,0,-1000);
+            }else if(DistanceX == 0 && !AvancerZ){
+                componant.obj.position.z -= 0.01;
+                componant.obj.lookAt(0,0,-1000);
+            }else if(!AvancerX && !AvancerZ && DistanceZ != 0){
+                componant.obj.position.x -= 0.01;
+                componant.obj.position.z -= 0.01;
+                componant.obj.lookAt(-1000,0,-1000);
+            }else if(!AvancerX && DistanceZ == 0 ){
+                componant.obj.position.x -= 0.01;
+                componant.obj.lookAt(-1000,0,0);
+            }else if(!AvancerX && AvancerZ && DistanceX != 0){
+                componant.obj.position.x -= 0.01;
+                componant.obj.position.z += 0.01;
+                componant.obj.lookAt(-1000,0,1000);
+            }
+            else if(DistanceX == 0 && AvancerZ){
+                componant.obj.position.z += 0.01;
+                componant.obj.lookAt(0,0,1000);
+            }
+        }())
     }
 
 
