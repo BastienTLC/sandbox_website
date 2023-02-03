@@ -30,6 +30,7 @@ import { CpuLineChartComponent } from './server-info/graphe/cpu-line-chart/cpu-l
 import { CubeComponent } from './cube/cube.component';
 import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
+import { ThreeSceneComponent } from './three-scene/three-scene.component';
 
 
 
@@ -46,6 +47,7 @@ import {FormsModule} from "@angular/forms";
     PieChartComponent,
     CpuLineChartComponent,
     CubeComponent,
+    ThreeSceneComponent,
   ],
     imports: [
         BrowserModule,
