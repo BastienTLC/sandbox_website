@@ -5,8 +5,10 @@ import {canvas} from "chart.js/helpers";
 import {Camera} from "./Camera";
 import {Renderer} from "./Renderer";
 import {Time} from "./Utils/Time";
+import assets from "./Utils/assets"
 
 import {World} from "./World/World";
+import {Resources} from "./Utils/Resources";
 
 export class Experience{
     static instance: Experience;
@@ -17,7 +19,8 @@ export class Experience{
     camera!: Camera;
     renderer!: Renderer;
     time!: Time;
-    private world!: World;
+    world!: World;
+    resources!: Resources;
 
     constructor(canvas:HTMLCanvasElement) {
         if (Experience.instance) {
@@ -31,6 +34,7 @@ export class Experience{
         this.sizes = new Sizes();
         this.camera = new Camera();
         this.renderer = new Renderer();
+        this.resources = new Resources(assets);
         this.world = new World();
 
 
@@ -45,11 +49,13 @@ export class Experience{
 
     resize(){
         this.camera.resize();
+        this.world.resize();
         this.renderer.resize();
     }
 
     update(){
         this.camera.update();
+        this.world.update();
         this.renderer.update();
     }
 
