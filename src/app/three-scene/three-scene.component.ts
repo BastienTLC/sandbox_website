@@ -1,5 +1,6 @@
-import {Component, AfterViewInit, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 import {Experience} from "./Experience";
+import { WorldDataService } from './services/world-data.service';
 
 @Component({
   selector: 'app-three-scene',
@@ -8,17 +9,26 @@ import {Experience} from "./Experience";
 })
 export class ThreeSceneComponent implements OnInit, AfterViewInit{
   @ViewChild('canvas')
-  //private canvas = document.getElementById("canvas") as HTMLCanvasElement;
+
   private canvasRef!: ElementRef;
   private get canvas(): HTMLCanvasElement { return this.canvasRef.nativeElement;}
-  //private exp : Experience = new Experience(this.canvas);
+  @Input() public floorSize: { x: number; y: number } = {x: 10, y: 10};
+  private exp!: Experience;
+
+  constructor(private floorDataService: WorldDataService) {
+  }
+
+  onValueChange(newValue: any) {
+    this.floorDataService.floorSize = this.floorSize;
+    //this.exp.world.generateFloor();
+  }
 
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    const exp = new Experience(this.canvas);
+    this.exp = new Experience(this.canvas,this.floorDataService);
   }
 
 

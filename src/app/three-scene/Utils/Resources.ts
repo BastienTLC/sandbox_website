@@ -68,6 +68,9 @@ export class Resources extends EventEmitter{
                 this.videoTexture[asset.name].generateMipmaps = false;
                 this.videoTexture[asset.name].encoding = THREE.sRGBEncoding
             }
+            else if(asset.type === "texture"){
+                this.loadImage(asset);
+            }
         }
     }
 
@@ -77,5 +80,11 @@ export class Resources extends EventEmitter{
         if (this.loaded === this.queue){
             this.emit("ready");
         }
+    }
+    loadImage(asset: any){
+        this.items[asset.name] = asset.path;
+        this.loaded++;
+        if (this.loaded === this.queue)
+            this.emit("ready");
     }
 }

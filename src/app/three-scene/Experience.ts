@@ -9,6 +9,7 @@ import assets from "./Utils/assets"
 
 import {World} from "./World/World";
 import {Resources} from "./Utils/Resources";
+import {WorldDataService} from "./services/world-data.service";
 
 export class Experience{
     static instance: Experience;
@@ -22,7 +23,7 @@ export class Experience{
     world!: World;
     resources!: Resources;
 
-    constructor(canvas:HTMLCanvasElement) {
+    constructor(canvas:HTMLCanvasElement,private floorDataService: WorldDataService) {
         if (Experience.instance) {
             return Experience.instance;
         }
@@ -35,7 +36,7 @@ export class Experience{
         this.camera = new Camera();
         this.renderer = new Renderer();
         this.resources = new Resources(assets);
-        this.world = new World();
+        this.world = new World(floorDataService);
 
 
         this.time.on("update", ()=>{

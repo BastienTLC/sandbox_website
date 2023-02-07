@@ -8,6 +8,8 @@ import assets from "../Utils/assets";
 import {Resources} from "../Utils/Resources";
 import {Character} from "./character";
 import {Environment} from "./Environment";
+import {WorldDataService} from "../services/world-data.service";
+import {Controls} from "./Controls";
 
 export class World {
     private experience: Experience;
@@ -17,12 +19,13 @@ export class World {
 
     private camera: Camera;
     private renderer!: THREE.WebGLRenderer;
-    private floor!: Floor;
+    floor!: Floor;
     private resources: Resources;
     private character!: Character;
     private environment!: Environment;
+    private controls!: Controls;
 
-    constructor() {
+    constructor(private floorDataService: WorldDataService) {
         this.experience = Experience.instance;
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
@@ -32,10 +35,16 @@ export class World {
 
         this.resources.on("ready", () =>{
             this.environment = new Environment();
-            //this.floor = new Floor();
             this.character = new Character();
+            this.floor = new Floor(floorDataService);
+            this.controls = new Controls();
         })
     }
+
+    generateFloor(){
+        this.floor.createFloor();
+    }
+
 
 
     resize(){
@@ -44,6 +53,13 @@ export class World {
     update(){
         if (this.character){
             this.character.update();
+        }
+
+        if (this.floor){
+            this.floor.update();
+        }
+        if (this.controls){
+            this.controls.update();
         }
     }
 }

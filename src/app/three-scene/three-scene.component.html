@@ -1,1 +1,26 @@
+
+<mat-card class="example-result-card">
+
+    <mat-card-content>
+        <h2>Result</h2>
+        <div class="example-label-container">
+            <label id="label-longueur" class="example-name-label">Longueur : </label>
+            <label class="example-value-label">{{floorSize.x}}</label>
+        </div>
+        <mat-slider min="0" max="50" step="1">
+            <input matSliderThumb [(ngModel)]="floorSize.x" (ngModelChange)="onValueChange($event)">
+        </mat-slider>
+    </mat-card-content>
+    <mat-card-content>
+        <h2>Result</h2>
+        <div class="example-label-container">
+            <label id="label-largeur" class="example-name-label">Largeur : </label>
+            <label class="example-value-label">{{floorSize.y}}</label>
+        </div>
+        <mat-slider min="0" max="50" step="1">
+            <input matSliderThumb [(ngModel)]="floorSize.y" (ngModelChange)="onValueChange($event)">
+        </mat-slider>
+    </mat-card-content>
+</mat-card>
 <canvas #canvas id="canvas" style="height: 100%; width: 100%"></canvas>
+

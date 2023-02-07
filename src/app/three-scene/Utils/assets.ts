@@ -1,5 +1,5 @@
 export default [
-    /*{
+    {
         name:"square",
         type:"texture",
         path: "/assets/textures/BlocTexture.png"
@@ -8,7 +8,7 @@ export default [
         name:"squareHover",
         type:"texture",
         path: "/assets/textures/HoverBloque.png"
-    },*/
+    },
     {
         name:"character",
         type:"gltf",
