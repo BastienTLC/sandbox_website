@@ -14,6 +14,7 @@ export class Floor {
     private hoverFloor = new THREE.Group();
     public blocCourbe = new THREE.Group();
     private loader = new THREE.TextureLoader();
+    private cubeloader = new THREE.CubeTextureLoader();
     private resources: Resources;
     private squareHoverTexture: string;
     private squareTexture: string;
@@ -34,7 +35,25 @@ export class Floor {
         this.hoverFloor.name = "hoverFloor";
 
         const cubeGeometry = new THREE.BoxGeometry(1,1,1);
-        const planeMaterial = new THREE.MeshStandardMaterial({ map: this.loader.load(this.squareTexture)});
+        let materialArray = [
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-side"]) } ),
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-side"]) } ),
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-top"]) } ),
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-side"]) } ),
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-side"]) } ),
+            new THREE.MeshStandardMaterial  ( { map: this.loader.load(this.resources.items["square-side"]) } ),
+        ];
+        //const cubeMaterial = new THREE.MeshStandardMaterial({envMap: materialArray});
+
+
+        const planeGeometry = new THREE.PlaneGeometry(100,100);
+        const planeMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = Math.PI / 2;
+        plane.position.y = -2;
+        plane.receiveShadow = true;
+
+
 
         const smallCubeGeometry = new THREE.BoxGeometry(0.9,0.2,0.9);
 
@@ -70,12 +89,12 @@ export class Floor {
                 const curveObject = new THREE.Line( geometry, material );
                 this.blocCourbe.add(curveObject);
 
-                const cube = new THREE.Mesh( cubeGeometry, planeMaterial );
+                const cube = new THREE.Mesh( cubeGeometry, materialArray );
                 cube.position.x = initCubePosition.x;
                 cube.position.z = initCubePosition.y;
                 cube.position.y = initCubePosition.z;
                 cube.receiveShadow = true;
-                cube.castShadow = false;
+                cube.castShadow = true;
                 cube.userData['ground'] = true;
                 cube.userData['name'] = "ground";
                 cube.userData['row'] = x;
@@ -102,6 +121,7 @@ export class Floor {
             }
         }
         //this.scene.add(this.blocCourbe);
+        this.scene.add(plane);
         this.scene.add(this.floor);
         this.scene.add(this.hoverFloor);
     }

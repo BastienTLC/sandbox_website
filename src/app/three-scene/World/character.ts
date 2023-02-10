@@ -22,7 +22,9 @@ export class Character {
     }
 
     setModel(){
+        this.focusCharacter.castShadow = true;
         this.scene.add(this.focusCharacter);
+        console.log(this.focusCharacter);
     }
 
     Rotate(){
