@@ -1,0 +1,43 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{process.user}}
+            </mat-panel-title>
+            <mat-panel-description>
+                PID : {{process.pid}}
+            </mat-panel-description>
+            <mat-panel-description>
+                CPU : {{process.cpu}}
+            </mat-panel-description>
+            <mat-panel-description>
+                RAM : {{process.mem}}
+            </mat-panel-description>
+            <mat-panel-description>
+                TIME : {{process.time}}
+            </mat-panel-description>
+            <mat-panel-description>
+                {{process.command.length > 10 ? process.command.slice(0, 10) + '...' : process.command}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="subPannel">
+            <div class="subInformation">
+                <mat-panel-title>
+                    {{process.command}}
+                </mat-panel-title>
+            </div>
+            <div class="actionButton">
+                <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>pause</mat-icon>
+                </button>
+                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>replay</mat-icon>
+                </button>
+                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>stop</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

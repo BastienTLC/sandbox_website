@@ -4,24 +4,34 @@ import {Observable} from "rxjs";
 import {ServerDataMemoryModel} from "./DataModel/ServerDataMemory.model";
 import { RootObject } from '../interfaces/RootObject';
 import {SystemInfo} from "../interfaces/system-info";
+import {Process} from "../interfaces/Process";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServerDataService {
 
-  constructor(private http: HttpClient) {}
+
+export class ServerDataService {
+  private domaine : string;
+
+  constructor(private http: HttpClient) {
+    this.domaine = 'http://bastientlc.freeboxos.fr:32769/';
+  }
 
   getMemory():Observable<ServerDataMemoryModel> {
-    return this.http.get<ServerDataMemoryModel>('http://bastientlc.freeboxos.fr:32769/memory');
+    return this.http.get<ServerDataMemoryModel>(this.domaine+'memory');
   }
 
   getCpus():Observable<RootObject>{
-    return this.http.get<RootObject>('http://bastientlc.freeboxos.fr:32769/cpu');
+    return this.http.get<RootObject>(this.domaine+'cpu');
   }
 
   getSystem():Observable<SystemInfo>{
-    return this.http.get<SystemInfo>('http://bastientlc.freeboxos.fr:32769/sysinfo');
+    return this.http.get<SystemInfo>(this.domaine+'sysinfo');
+  }
+
+  getProcess(): Observable<Process[]>{
+    return this.http.get<Process[]>(this.domaine+'process');
   }
 }

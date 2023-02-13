@@ -31,6 +31,9 @@ import { CubeComponent } from './cube/cube.component';
 import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
 import { ThreeSceneComponent } from './three-scene/three-scene.component';
+import { ProcessListComponent } from './server-info/process-list/process-list.component';
+import { ProcessRowComponent } from './server-info/process-list/process-row/process-row.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 
@@ -48,6 +51,8 @@ import { ThreeSceneComponent } from './three-scene/three-scene.component';
     CpuLineChartComponent,
     CubeComponent,
     ThreeSceneComponent,
+    ProcessListComponent,
+    ProcessRowComponent,
   ],
     imports: [
         BrowserModule,
@@ -68,6 +73,7 @@ import { ThreeSceneComponent } from './three-scene/three-scene.component';
         MatProgressSpinnerModule,
         MatSliderModule,
         FormsModule,
+        MatExpansionModule,
 
     ],
   providers: [],

@@ -3,8 +3,6 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {ServerDataService} from "./server-data.service";
 import _default from "chart.js/dist/plugins/plugin.tooltip";
-import numbers = _default.defaults.animations.numbers;
-import {ServerDataMemoryModel} from "./DataModel/ServerDataMemory.model";
 import {Cpu} from "../interfaces/RootObject";
 import {SystemInfo} from "../interfaces/system-info";
 

@@ -1,4 +1,25 @@
 
 
+@media (max-width: 767px) {
+    canvas{
+        width: 200px;
+    }
+}
+
+/* Pour les tablettes */
+@media (min-width: 768px) and (max-width: 1299px) {
+    canvas{
+        width: 200px;
+    }
+}
+
+/* Pour les ordinateurs portables et les ordinateurs de bureau */
+@media (min-width: 1300px) {
+    canvas{
+        width: 250px;
+    }
+}
+
+
 
 

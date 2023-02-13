@@ -35,8 +35,10 @@ mat-card-header{
 .ram-statistique{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  background-color: crimson;
+  flex-wrap: wrap;
 }
 
 .writeStatistique{
@@ -75,6 +77,7 @@ mat-card-header{
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 5px;
 }
 
