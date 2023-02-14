@@ -1,9 +1,16 @@
 
-<div style="height: 500px; overflow-y: scroll; overflow-x: hidden ">
+<div class="processList" style="height: 500px; overflow-y: scroll; overflow-x: hidden ">
     <div class="table-header">
+        <div class="pidOrder" (click)="orderByName()"> <mat-icon>sort_by_alpha</mat-icon> USER</div>
+        <div class="pidOrder" (click)="orderByPid()"> <mat-icon>sort_by_alpha</mat-icon> PID </div>
+        <div class="pidOrder" (click)="orderByCpu()"> <mat-icon>sort_by_alpha</mat-icon> CPU</div>
+        <div class="pidOrder" (click)="orderByRam()"> <mat-icon>sort_by_alpha</mat-icon> RAM</div>
+        <div class="pidOrder" (click)="orderByTime()"> <mat-icon>sort_by_alpha</mat-icon> TIME</div>
+        <div class="pidOrder">  PATH</div>
+
 
     </div>
-    <div *ngFor="let process of sortedProcessList">
+    <div *ngFor="let process of processList">
         <app-process-row
             [process]="process">
         </app-process-row>
