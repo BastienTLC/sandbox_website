@@ -32,9 +32,11 @@ import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
 import { ThreeSceneComponent } from './three-scene/three-scene.component';
 import { ProcessListComponent } from './server-info/process-list/process-list.component';
-import { ProcessRowComponent } from './server-info/process-list/process-row/process-row.component';
+import {PassWordDialog, ProcessRowComponent} from './server-info/process-list/process-row/process-row.component';
 import {MatExpansionModule} from "@angular/material/expansion";
-
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -53,6 +55,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     ThreeSceneComponent,
     ProcessListComponent,
     ProcessRowComponent,
+    PassWordDialog
   ],
     imports: [
         BrowserModule,
@@ -74,6 +77,9 @@ import {MatExpansionModule} from "@angular/material/expansion";
         MatSliderModule,
         FormsModule,
         MatExpansionModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule
 
     ],
   providers: [],

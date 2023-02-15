@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>MOT DE PASS</h1>
+<div mat-dialog-content>
+    <p>saisissez le mot de pass l'utlisateur piweb </p>
+    <mat-form-field appearance="fill">
+        <mat-label>Mot de pass</mat-label>
+        <input matInput [(ngModel)]="data.mdp">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.mdp" cdkFocusInitial>Ok</button>
+</div>

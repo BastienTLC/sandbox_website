@@ -28,13 +28,14 @@
                 </mat-panel-title>
             </div>
             <div class="actionButton">
-                <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                    <mat-icon>pause</mat-icon>
+                <button mat-fab color="primary" (click)="sendPauseSig()" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon *ngIf="isRun">pause</mat-icon>
+                    <mat-icon *ngIf="!isRun">play_arrow</mat-icon>
                 </button>
-                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                <button mat-fab color="accent" (click)="sendRestartSig()" aria-label="Example icon button with a bookmark icon">
                     <mat-icon>replay</mat-icon>
                 </button>
-                <button mat-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                <button mat-fab color="warn" (click)="sendStopSig()" aria-label="Example icon button with a bookmark icon">
                     <mat-icon>stop</mat-icon>
                 </button>
             </div>

@@ -34,4 +34,13 @@ export class ServerDataService {
   getProcess(): Observable<Process[]>{
     return this.http.get<Process[]>(this.domaine+'process');
   }
+
+
+  pauseProcess(pid: string, pwd: string) {
+    const pidSend = parseInt(pid);
+    const body = { pwd: pwd };
+    return this.http.post(this.domaine + 'process/pause/' + pid, {body});
+  }
+
+
 }
