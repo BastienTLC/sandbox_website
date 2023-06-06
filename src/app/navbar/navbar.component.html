@@ -8,6 +8,7 @@
       <a mat-list-item (click)="changeValue('value1'); toggleFlip()"><mat-icon>location_city</mat-icon> Ville Bretagne</a>
       <a mat-list-item (click)="changeValue('value2'); toggleFlip()"><mat-icon>network_check</mat-icon> Serveur</a>
       <a mat-list-item (click)="changeValue('value3'); toggleFlip()"><mat-icon> 3d_rotation </mat-icon> ThreeJs</a>
+      <a mat-list-item (click)="changeValue('value4'); toggleFlip()"><mat-icon>world</mat-icon> Langues</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -26,6 +27,7 @@
         <div *ngSwitchCase="'value1'"><app-list-ville></app-list-ville></div>
         <div *ngSwitchCase="'value2'"><app-server-info></app-server-info></div>
         <div *ngSwitchCase="'value3'"><app-three-scene></app-three-scene></div>
+        <div *ngSwitchCase="'value4'"><app-langue-game></app-langue-game></div>
         <div *ngSwitchDefault></div>
       </div>
     </mat-drawer-container>

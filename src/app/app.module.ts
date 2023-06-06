@@ -37,26 +37,28 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { LangueGameComponent } from './langue-game/langue-game.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    ListVilleComponent,
-    CardComponent,
-    BarChartComponent,
-    LineChartComponent,
-    ServerInfoComponent,
-    DoughnutChartComponent,
-    PieChartComponent,
-    CpuLineChartComponent,
-    CubeComponent,
-    ThreeSceneComponent,
-    ProcessListComponent,
-    ProcessRowComponent,
-    PassWordDialog
-  ],
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        ListVilleComponent,
+        CardComponent,
+        BarChartComponent,
+        LineChartComponent,
+        ServerInfoComponent,
+        DoughnutChartComponent,
+        PieChartComponent,
+        CpuLineChartComponent,
+        CubeComponent,
+        ThreeSceneComponent,
+        ProcessListComponent,
+        ProcessRowComponent,
+        PassWordDialog,
+        LangueGameComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,

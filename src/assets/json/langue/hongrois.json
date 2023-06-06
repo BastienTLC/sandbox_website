@@ -1,0 +1,84 @@
+{
+  "mots": [
+    {
+      "hongrois": "szia",
+      "traduction": "salut"
+    },
+    {
+      "hongrois": "kérem",
+      "traduction": "s'il vous plaît"
+    },
+    {
+      "hongrois": "köszönöm",
+      "traduction": "merci"
+    },
+    {
+      "hongrois": "igen",
+      "traduction": "oui"
+    },
+    {
+      "hongrois": "nem",
+      "traduction": "non"
+    },
+    {
+      "hongrois": "jó reggelt",
+      "traduction": "bonjour (le matin)"
+    },
+    {
+      "hongrois": "jó napot",
+      "traduction": "bonjour (l'après-midi)"
+    },
+    {
+      "hongrois": "jó estét",
+      "traduction": "bonsoir"
+    },
+    {
+      "hongrois": "viszlát",
+      "traduction": "au revoir"
+    },
+    {
+      "hongrois": "bocsánat",
+      "traduction": "excusez-moi"
+    },
+    {
+      "hongrois": "nincs probléma",
+      "traduction": "pas de problème"
+    },
+    {
+      "hongrois": "beszélsz angolul?",
+      "traduction": "parles-tu anglais?"
+    },
+    {
+      "hongrois": "nem értem",
+      "traduction": "je ne comprends pas"
+    },
+    {
+      "hongrois": "segítség",
+      "traduction": "aide"
+    },
+    {
+      "hongrois": "hol van a mosdó?",
+      "traduction": "où se trouve les toilettes?"
+    },
+    {
+      "hongrois": "hogy vagy?",
+      "traduction": "comment ça va?"
+    },
+    {
+      "hongrois": "jól vagyok",
+      "traduction": "je vais bien"
+    },
+    {
+      "hongrois": "mi a neved?",
+      "traduction": "comment tu t'appelles?"
+    },
+    {
+      "hongrois": "hány éves vagy?",
+      "traduction": "quel âge as-tu?"
+    },
+    {
+      "hongrois": "szeretlek",
+      "traduction": "je t'aime"
+    }
+  ]
+}

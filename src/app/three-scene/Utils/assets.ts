@@ -22,6 +22,6 @@ export default [
     {
         name:"character",
         type:"gltf",
-        path: "http://bastientlc.freeboxos.fr:32769/static/3D/character_rogue.gltf"
+        path: "http://localhost:8000/static/game/character/3d/BaseCharacter.glb"
     }
 ];
